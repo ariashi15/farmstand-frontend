@@ -1,7 +1,7 @@
 export default function LandingPage() {
     return (
     <>
-        <div className="bg-dark-green">please work</div>
+        <div className="">please work</div>
     </>
     )
 }
