@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+@theme {
+  --color-dark-green: #266B28;
+}
+
 html, body {
   margin: 0;
   padding: 0;
