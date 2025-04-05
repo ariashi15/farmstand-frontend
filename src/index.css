@@ -2,4 +2,9 @@
 
 @theme {
   --color-dark-green: #266B28;
+  --color-dark-gray: #6E6E6E;
+  --color-med-gray: #D8D8D8;
+  --color-light-gray: #EEEEEE;
+  --color-light-yellow: #FFE882;
+  --color-dark-yellow: #88710C;
 }
