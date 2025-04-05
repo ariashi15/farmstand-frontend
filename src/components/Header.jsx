@@ -42,10 +42,10 @@ export default function Header() {
 
         {/* Popup */}
         {isPopupOpen && (
-            <div className="fixed inset-60 mx-80 flex items-center justify-center bg-yellow-200/50 rounded-3xl backdrop-blur-sm">
-                <div className="bg-white p-4 rounded-3xl">
+            <div className="fixed inset-0 flex items-center justify-center rounded-3xl bg-black/30 z-50">
+                <div className="bg-white p-4 rounded-3xl border-10 border-yellow-200">
                     <h2 className="text-lg font-bold">Enter Location</h2>
-                    <form className = "flex flex-col" onSubmit={handleLocationSubmit}>
+                    <form className = "flex flex-col " onSubmit={handleLocationSubmit}>
                         <input 
                             type="text"
                             name="Zip Code"
