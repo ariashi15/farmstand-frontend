@@ -18,7 +18,7 @@ export default function Header() {
         <header className = "bg-dark-green py-3 items-center text-yellow-50">
             <nav className = "flex justify-between items-center bg-dark-green mx-auto w-[97%]">
                 <div>
-                    <button class ="btn flex bg-yellow-200 rounded border-white px-4 py-1 text-black" onClick={() => setIsPopupOpen(true)}>
+                    <button class ="btn flex bg-yellow-200 rounded border-white px-4 py-1 text-dark-yellow" onClick={() => setIsPopupOpen(true)}>
                         <MapPin size={24} class = "mr-2 -ml-2"/>
                         <span>{location || "Enter Location"}</span>
                     </button>
@@ -33,8 +33,8 @@ export default function Header() {
                         </li>
                     </ul>
                     <div className = "flex gap-[2vw]">
-                        <button className = "btn bg-yellow-200 rounded border-white px-4 py-1 text-black">Login</button>
-                        <button className = "btn bg-yellow-200 rounded border-white px-4 py-1 text-black"><ShoppingCart size={24} /></button>
+                        <button className = "btn bg-yellow-200 rounded border-white px-4 py-1 text-dark-yellow">Login</button>
+                        <button className = "btn bg-yellow-200 rounded border-white px-4 py-1 text-dark-yellow"><ShoppingCart size={24} /></button>
                     </div>
                 </div>
             </nav>
