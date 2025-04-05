@@ -4,6 +4,8 @@ import viteLogo from '/vite.svg'
 import Header from './components/Header'
 import './App.css'
 import LandingPage from './pages/LandingPage'
+import FarmDashboard from './pages/FarmDashboard'
+import FarmInfo from './pages/FarmInfo'
 
 function App() {
   const [count, setCount] = useState(0)
