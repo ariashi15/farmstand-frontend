@@ -24,8 +24,8 @@ export default function Header() {
                 <div className="flex gap-8 items-center">
                     <NavLink to = "/">Farmstand</NavLink>
                     <div>
-                        <button class ="btn flex bg-yellow-200 rounded border-white px-4 py-1 text-dark-yellow" onClick={() => setIsPopupOpen(true)}>
-                            <MapPin size={24} class = "mr-2 -ml-2"/>
+                        <button className="btn flex bg-yellow-200 rounded border-white px-4 py-1 text-dark-yellow" onClick={() => setIsPopupOpen(true)}>
+                            <MapPin size={24} className= "mr-2 -ml-2"/>
                             <span>{location || "Enter Location"}</span>
                         </button>
                     </div>
