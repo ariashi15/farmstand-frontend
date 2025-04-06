@@ -42,20 +42,20 @@ export default function Header() {
                     <div className = "flex gap-[2vw]">
 
                         {!loggedIn 
-                        ? (<button className = "btn bg-yellow-200 rounded border-white px-4 py-1 text-dark-yellow" onClick={() => setLoggedIn(true)}>Login</button>)
-                        : (<button className = "btn bg-yellow-200 rounded-full border-white px-1 py-1 text-dark-yellow" onClick={() => setProfileDropVisible(!profileDropVisible)}><User/></button>)}
+                        ? (<button className = "btn bg-yellow-200 rounded border-white px-4 py-1 text-dark-yellow hover:cursor-pointer" onClick={() => setLoggedIn(true)}>Login</button>)
+                        : (<button className = "btn bg-yellow-200 rounded-full border-white px-1 py-1 text-dark-yellow hover:cursor-pointer" onClick={() => setProfileDropVisible(!profileDropVisible)}><User/></button>)}
 
                         {profileDropVisible && (
                         <div className="absolute bg-white shadow-lg rounded-md mt-10 py-2 w-[120px]">
-                            <button className="block w-full text-left px-4 py-2 hover:bg-gray-200 text-black">
+                            <button className="block w-full text-left px-4 py-2 hover:bg-gray-200 text-black hover:cursor-pointer">
                                 My Account
                             </button>
-                            <button className="block w-full text-left px-4 py-2 hover:bg-gray-200 text-black">
+                            <button className="block w-full text-left px-4 py-2 hover:bg-gray-200 text-black hover:cursor-pointer">
                                 Messages
                             </button>
-                            <button className="block w-full text-left px-4 py-2 hover:bg-gray-200 text-black">
+                            <NavLink className="block w-full text-left px-4 py-2 hover:bg-gray-200 text-black hover:cursor-pointer" to = "/farmdashboard">
                                 My Farm
-                            </button>
+                            </NavLink>
                         </div>)}
 
                         <button className = "btn bg-yellow-200 rounded border-white px-4 py-1 text-dark-yellow"><ShoppingCart size={24} /></button>

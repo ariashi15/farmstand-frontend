@@ -32,16 +32,16 @@ export default function SearchProduce() {
                 <SearchBar />
                 {/* Sort Dropdown */}
                 <div className="relative">
-                    <button className="bg-dark-green text-white font-medium py-2 px-4 rounded m-1 ml-3" onClick={toggleSort}>Sort By</button>
+                    <button className="bg-dark-green text-white font-medium py-2 px-4 rounded m-1 ml-3 hover:cursor-pointer" onClick={toggleSort}>Sort By</button>
                     {sortVisible && (
-                        <div className="absolute bg-white shadow-lg rounded-md mt-2 py-2 w-[200px] z-10">
-                        <button className="block w-full text-left px-4 py-2 hover:bg-gray-200">
+                        <div className="absolute bg-white shadow-lg rounded-md mt-2 py-2 w-[2 00px] z-10">
+                        <button className="block w-full text-left px-4 py-2 hover:bg-gray-200 hover:cursor-pointer">
                         Price (Low to High)
                       </button>
-                      <button className="block w-full text-left px-4 py-2 hover:bg-gray-200">
+                      <button className="block w-full text-left px-4 py-2 hover:bg-gray-200 hover:cursor-pointer">
                         Price (High to Low)
                       </button>
-                      <button className="block w-full text-left px-4 py-2 hover:bg-gray-200">
+                      <button className="block w-full text-left px-4 py-2 hover:bg-gray-200 hover:cursor-pointer">
                         Distance
                       </button>
                     </div>
@@ -50,13 +50,13 @@ export default function SearchProduce() {
 
                 {/* Filter Dropdown */}
                 <div className="relative">
-                <button className="bg-dark-green text-white font-medium py-2 px-4 rounded m-1" onClick ={toggleFilter}>Filter By</button>
+                <button className="bg-dark-green text-white font-medium py-2 px-4 rounded m-1 hover:cursor-pointer" onClick ={toggleFilter}>Filter By</button>
                     {filterVisible && (
                         <div className="absolute bg-white shadow-lg rounded-md mt-2 py-2 w-[200px] z-10">
-                        <button className="block w-full text-left px-4 py-2 hover:bg-gray-200">
+                        <button className="block w-full text-left px-4 py-2 hover:bg-gray-200 hover:cursor-pointer">
                         Offers Delivery
                       </button>
-                      <button className="block w-full text-left px-4 py-2 hover:bg-gray-200">
+                      <button className="block w-full text-left px-4 py-2 hover:bg-gray-200 hover:cursor-pointer">
                        Offers Pickup
                       </button>
                     </div>
