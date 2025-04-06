@@ -1,9 +1,27 @@
-import { NavLink } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { NavLink } from 'react-router-dom';
 import SearchBar from "../components/SearchBar";
+import React, { useState, useEffect } from "react";
 
 export default function LandingPage() {
-  const [offset, setOffset] = useState(0);
+    const [products, setProducts] = useState([]);
+    const [filtered, setFiltered] = useState([]);
+    const [offset, setOffset] = useState(0);
+
+    useEffect(() => {
+        const fetchAllProducts = async () => {
+            try {
+                const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/inventory/allfarms`);
+                const data = await response.json();
+                setProducts(data);
+                setFiltered(data);
+            } catch (error) {
+                console.error('Error fetching products:', error);
+            }
+        }
+
+        fetchAllProducts();
+    }, []);
+    
 
   useEffect(() => {
     const handleScroll = () => setOffset(window.scrollY);
