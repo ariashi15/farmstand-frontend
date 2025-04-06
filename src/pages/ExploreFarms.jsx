@@ -37,12 +37,15 @@ export default function ExploreFarms() {
 
     return (
         <>
-            <div className="relative flex justify-center">
+            <div className="relative flex justify-center items-center">
                 {/* path png */}
+               
                 <div
                     className="absolute top-0 w-[80%] h-screen bg-contain bg-top bg-repeat-y z-[-1]"
                     style={{ backgroundImage: "url('src/assets/path.svg')" }}
                 ></div>
+   
+            
 
                 <div className="grid grid-cols-3 gap-x-20 gap-y-31 mt-[18.5vh] m-[4vh]">
                     {farms.map((farm, index) => (

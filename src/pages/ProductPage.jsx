@@ -1,33 +1,83 @@
 import React, { useState, useEffect } from "react";
-import { NavLink, useParams } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 export default function ProductPage() {
-    const { productid } = useParams();
-    console.log(productid);
-    const [product, setProduct] = useState(null);
-    const [loading, setLoading] = useState(true);
+    const location = useLocation();
+    const product = location.state?.product;
+    const [cart, setCart] = useState(JSON.parse(localStorage.getItem("cart")) || []);
+    const [nextCartId, setNextCartId] = useState(Number(localStorage.getItem("nextCartId")) || 1);
+    
+   // const [product, setProduct] = useState(null);
+   // const [loading, setLoading] = useState(true);
     const [quantity, setQuantity] = useState(0);
     const [selected, setSelected] = useState(null); // null means no button is selected initially
+    const [addedToCart, setAddedToCart] = useState(false);
 
-    useEffect(() => {
-        const fetchProductByID = async () => {
-            try {
-                const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/inventory/${productid}`);
-                const data = await response.json();
-                setProduct(data[0]);
-            } catch (error) {
-                console.error('Error fetching product:', error);
-            } finally {
-                setLoading(false); // set loading to false after fetch
-            }
-        }
+    const addToCart = () => {
+        const newItem = {
+            item_id: product.item_id,
+            item_name: product.item_name,
+            price: product.price,
+            quantity,
+            farm: product.farms.name,
+            pickup: product.farms.pickup,
+            delivery: product.farms.delivery,
+            image_url: product.image_url,
+            cart_id: nextCartId
+        };
 
-        fetchProductByID();
-    }, [productid]);
+        const updatedCart = [...cart, newItem];  // Add the new item to the cart
+        setCart(updatedCart);  // Update the cart state
+        localStorage.setItem("cart", JSON.stringify(updatedCart));  // Save updated cart to localStorage
 
-    if (loading) {
-        return <div>Loading...</div>; // Show a loading message while fetching
-    }
+        const newNextId = nextCartId + 1;
+        setNextCartId(newNextId);
+        localStorage.setItem("nextCartId", newNextId);
+
+                // Show the "Added to cart" message and hide it after 2 seconds
+                setAddedToCart(true);
+                setTimeout(() => {
+                    setAddedToCart(false);
+                }, 2000); // Hide message after 2 seconds
+
+     
+        console.log(cart)
+        console.log(nextCartId)
+    };
+
+
+// Sync cart and nextCartId to localStorage whenever they change
+useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+}, [cart]);
+
+useEffect(() => {
+    localStorage.setItem("nextCartId", nextCartId);
+}, [nextCartId]);
+
+
+    // useEffect(() => {
+    //     const fetchProductByID = async () => {
+    //         try {
+    //             const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/inventory/${productid}`);
+    //             const data = await response.json();
+    //             setProduct(data[0]);
+    //         } catch (error) {
+    //             console.error('Error fetching product:', error);
+    //         } finally {
+    //             setLoading(false); // set loading to false after fetch
+    //         }
+    //     }
+
+    //     fetchProductByID();
+    // }, [productid]);
+
+    // if (loading) {
+    //     return <div>Loading...</div>; // Show a loading message while fetching
+    // }
+
+
 
     const increaseQuantity = () => {
         if (quantity < 10) {
@@ -84,9 +134,11 @@ export default function ProductPage() {
 
                         </div>
 
-                        <button className="text-lg border-dark-green border-2 text-white bg-dark-green rounded-md p-2 px-4 inline-block mt-8" >
+                        <button onClick={addToCart} className="text-lg border-dark-green border-2 text-white bg-dark-green rounded-md p-2 px-4 inline-block mt-8" >
                             Add to Cart
                         </button>
+                        {addedToCart && <div className="text-green-800 mt-4">Added to cart</div>}
+  
                     </div>
                 </div>
                 

@@ -1,6 +1,7 @@
 
 import { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, NavLink } from 'react-router-dom';
+
 
 export default function FarmPage() {
     const location = useLocation();
@@ -76,7 +77,7 @@ export default function FarmPage() {
             {/* Container for all products*/}
             <div className="m-5 mt-5 flex flex-wrap gap-5">
                 {filteredProducts.map((product, index) => (
-                    <div key={index} className="w-[22%] shadow-md m-3 p-3 relative"> 
+                    <NavLink to="/product" state={{product}} key={index} className="w-[22%] shadow-md m-3 p-3 relative"> 
                     {/* Image container */}
                     <div className="w-full pb-[100%] relative">
                         <img src={`${product.image_url}`} className="absolute inset-0 w-full h-full object-cover"/>
@@ -88,7 +89,7 @@ export default function FarmPage() {
                             <h6 className="text-sm text-gray font-light mb-1 italic">{product.unit}</h6>
                         </div>
                 
-                        </div>
+                    </NavLink>
                     
                     ))}
                 </div>

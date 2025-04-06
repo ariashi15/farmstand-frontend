@@ -23,7 +23,6 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/explore" element={<ExploreFarms />} />
         <Route path="/farmpage" element={<FarmPage />} />
-        <Route path="/product" element={<ProductPage />}/>
         <Route path="/farmdashboard" element={<FarmDashboard />}>
           <Route index element={<FarmInfo />} />
           <Route path="info" element={<FarmInfo />} />
@@ -31,7 +30,7 @@ function App() {
           <Route path="orders" element={<FarmOrders />} />
         </Route>
         <Route path="/search" element={<SearchProduce />} />
-        <Route path="/search/:productid" element={<ProductPage />} />
+        <Route path="/product" element={<ProductPage />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/account" element={<Account />} />
         <Route path="/messages" element={<Messages />} />
