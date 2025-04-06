@@ -9,3 +9,7 @@
   --color-light-yellow: #FFE882;
   --color-dark-yellow: #88710C;
 }
+
+body {
+  font-family: "Figtree", sans-serif;
+}
