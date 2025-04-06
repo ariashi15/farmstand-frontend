@@ -19,13 +19,16 @@ export default function LandingPage() {
         {/*<div className="absolute inset-0 bg-cover bg-center z-[-1] object-cover"
                 style={{ backgroundImage: "url('src/assets/farmstand-3.jpg')" }}
             ></div> */}
-        <div
-          className="absolute inset-0 bg-cover bg-center blur-sm brightness-75 z-[-1] scale-105"
+
+        <div className="absolute inset-0 bg-cover bg-center blur-sm brightness-75 z-[-1] scale-200">
+        <img
+          src="/assets/farmstand.jpg"
+          className="w-full h-full object-cover"
           style={{
-            backgroundImage: "url('src/assets/farmstand.jpg')",
             transform: `translateY(${offset * 0.3}px)`,
           }}
-        ></div>
+        />
+        </div>
         <h1
           className="text-white text-7xl font-semibold "
           style={{ fontFamily: '"Playfair Display SC", serif' }}

@@ -42,10 +42,10 @@ export default function ExploreFarms() {
                 {/* path png */}
                 
                
-                <div
+                <img
+                    src="/assets/path.svg"
                     className="absolute top-0 w-[80%] h-screen bg-contain bg-top bg-repeat-y z-[-1]"
-                    style={{ backgroundImage: "url('src/assets/path.svg')" }}
-                ></div>
+                />
                 
                 <div className='flex justify-center text-center gap-5'>
                     <h1 className="text-4xl font-bold mb-[4vh] text-center tracking-widest" style={{ fontFamily: '"Playfair Display SC", serif' }}>Explore Farms! </h1>

@@ -32,7 +32,7 @@ export default function FarmInfo() {
         {!isEdit ? (
             <>
             <div className="flex flex-col md:flex-row">
-                <img className="rounded-lg max-w-2xl" src={photo ? URL.createObjectURL(photo) : "/src/assets/farm-1.png"}/>
+                <img className="rounded-lg max-w-2xl" src={photo ? URL.createObjectURL(photo) : "/assets/farm-1.png"}/>
                 <div className="grid grid-cols-1 text-xl grid-flow-row h-10 w-full">
                     <div className="grid grid-cols-3">
                         <div className= "px-4 py-2 font-semibold">Farm Name</div>
