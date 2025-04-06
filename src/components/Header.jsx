@@ -47,13 +47,13 @@ export default function Header() {
 
                         {profileDropVisible && (
                         <div className="absolute bg-white shadow-lg rounded-md mt-10 py-2 w-[120px]">
-                            <button className="block w-full text-left px-4 py-2 hover:bg-gray-200 text-dark-green">
+                            <button className="block w-full text-left px-4 py-2 hover:bg-gray-200 text-black">
                                 My Account
                             </button>
-                            <button className="block w-full text-left px-4 py-2 hover:bg-gray-200 text-dark-green">
+                            <button className="block w-full text-left px-4 py-2 hover:bg-gray-200 text-black">
                                 Messages
                             </button>
-                            <button className="block w-full text-left px-4 py-2 hover:bg-gray-200 text-dark-green">
+                            <button className="block w-full text-left px-4 py-2 hover:bg-gray-200 text-black">
                                 My Farm
                             </button>
                         </div>)}
