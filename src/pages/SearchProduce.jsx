@@ -26,7 +26,7 @@ export default function SearchProduce() {
 
     return (
         <>
-            <div className="text-dark-green text-5xl m-5 font-bold">Find Produce</div>
+            <div style={{ fontFamily: '"Playfair Display SC", serif' }} className="text-dark-green text-5xl m-5 font-bold">Search Produce</div>
             {/* Div for search and sort elements */}
             <div className="m-5 flex">
                 <SearchBar />

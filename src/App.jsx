@@ -13,6 +13,7 @@ import ProductPage from './pages/ProductPage';
 import Cart from './pages/Cart';
 import Account from './pages/Account';
 import Messages from './pages/Messages';
+import FarmPage from './pages/FarmPage'
 
 function App() {
   return (
@@ -21,9 +22,10 @@ function App() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/explore" element={<ExploreFarms />} />
+        <Route path="/farmpage" element={<FarmPage />} />
+        <Route path="/product" element={<ProductPage />}/>
         <Route path="/farmdashboard" element={<FarmDashboard />}>
           <Route index element={<FarmInfo />} />
-
           <Route path="info" element={<FarmInfo />} />
           <Route path="products" element={<FarmProducts />} />
           <Route path="orders" element={<FarmOrders />} />
