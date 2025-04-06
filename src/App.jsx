@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css'
 
@@ -8,10 +7,9 @@ import FarmDashboard from './pages/FarmDashboard'
 import FarmInfo from './pages/FarmInfo'
 import FarmProducts from './pages/FarmProducts'
 import FarmOrders from './pages/FarmOrders'
+import SearchProduce from './pages/SearchProduce';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
       <Header />
@@ -24,6 +22,7 @@ function App() {
           <Route path="products" element={<FarmProducts />} />
           <Route path="orders" element={<FarmOrders />} />
         </Route>
+        <Route path="/search" element={<SearchProduce />} />
       </Routes>
     </>
   )
