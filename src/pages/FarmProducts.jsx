@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { PlusIcon, Trash2Icon, FileUpIcon, PencilIcon } from "lucide-react";
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function FarmProducts() {
     const [products, setProducts] = useState([]);
