@@ -65,17 +65,8 @@ export default function FarmProducts() {
     };
     return (
         <>
-            <div className="flex justify-between ">
-                <h1 className="font-bold text-2xl">Your Produces</h1>
-                <button className="btn bg-dark-green text-yellow-200 rounded-3xl px-3 py-2 flex hover:bg-yellow-200 hover:text-dark-green mr-10" onClick={() => setShowForm(true)}> 
-                    <PlusIcon size={25} className = "mt-0.5"/>
-                </button> 
-            </div>
-            <div className="grid grid-cols-4 font-semibold border-b pb-2 mt-3">
-                <div></div>
-                <div>Name</div>
-                <div>Price</div>
-                <div>Inventory</div>
+            <div class="flex">
+                Prods
             </div>
 
             {products.map((product, index) => (
