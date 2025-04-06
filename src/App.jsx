@@ -3,6 +3,7 @@ import './App.css'
 
 import Header from './components/Header'
 import LandingPage from './pages/LandingPage'
+import ExploreFarms from './pages/ExploreFarms';
 import FarmDashboard from './pages/FarmDashboard'
 import FarmInfo from './pages/FarmInfo'
 import FarmProducts from './pages/FarmProducts'
@@ -15,6 +16,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<LandingPage />} />
+        <Route path="/explore" element={<ExploreFarms />} />
         <Route path="/farmdashboard" element={<FarmDashboard />}>
           <Route index element={<FarmInfo />} />
 
