@@ -1,8 +1,22 @@
 import SearchBar from "../components/SearchBar"
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 export default function SearchProduce() {
-    const products = new Array(10).fill(null);
+    const [products, setProducts] = useState([]);
+
+    useEffect(() => {
+        const fetchAllProducts = async () => {
+            try {
+                const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/inventory/allfarms`);
+                const data = await response.json();
+                setProducts(data);
+            } catch (error) {
+                console.error('Error fetching products:', error);
+            }
+        }
+
+        fetchAllProducts();
+    }, []);
 
     const [sortVisible, setSortVisible] = useState(false);
     const [filterVisible, setFilterVisible] = useState(false);
@@ -53,17 +67,17 @@ export default function SearchProduce() {
             </div>
             {/* Div for all product results */}
             <div className="m-5 mt-5 flex flex-wrap gap-5">
-                {products.map((_, index) => (
+                {products.map((product, index) => (
                     <div key={index} className="w-[22%] shadow-md m-3 p-3 relative"> 
                     {/* Image container */}
                     <div className="w-full pb-[100%] relative">
                         <img src="/assets/apple.webp" className="absolute inset-0 w-full h-full object-cover"/>
                     </div>
-                        <h4 className="text-base font-light mt-3">Crystarialichloe Farm - 10 mi</h4>
-                        <h3 className="text-xl font-medium">Organic Honeycrisp Apple</h3>
+                        <h4 className="text-base font-light mt-3">Farm</h4>
+                        <h3 className="text-xl font-medium">{product.item_name}</h3>
                         <div className="flex flex-wrap items-end my-2 gap-2">
-                            <h5 className="text-3xl text-dark-green font-bold">$5</h5>
-                            <h6 className="text-sm text-gray font-light mb-1 italic">per pound</h6>
+                            <h5 className="text-3xl text-dark-green font-bold">{product.price}</h5>
+                            <h6 className="text-sm text-gray font-light mb-1 italic">{product.unit}</h6>
                         </div>
                         <div className="text-sm bg-light-yellow text-gray-800 rounded-full p-1 px-3 inline-block mr-1"> 
                             <h7 >Pickup</h7>
@@ -77,4 +91,8 @@ export default function SearchProduce() {
 
         </>
     );
+}
+
+function ProduceCard({}) {
+
 }
