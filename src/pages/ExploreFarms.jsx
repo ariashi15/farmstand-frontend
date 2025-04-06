@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
 
 export default function ExploreFarms() {
     const [farms, setFarms] = useState([]);
+    const [products, setProducts] = useState([]);
 
     useEffect(() => {
         const fetchFarms = async () => {
@@ -18,22 +20,42 @@ export default function ExploreFarms() {
 
     }, []);
 
+    useEffect(() => {
+        const fetchAllProducts = async () => {
+            try {
+                const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/inventory/allfarms`);
+                const data = await response.json();
+                setProducts(data);
+            } catch (error) {
+                console.error('Error fetching products:', error);
+            }
+        }
+
+        fetchAllProducts();
+    }, []);
+
 
     return (
         <>
-            <div className="relative flex justify-center">
+            <div className="relative flex justify-center items-center">
                 {/* path png */}
+               
                 <div
                     className="absolute top-0 w-[80%] h-screen bg-contain bg-top bg-repeat-y z-[-1]"
                     style={{ backgroundImage: "url('src/assets/path.svg')" }}
                 ></div>
+   
+            
 
                 <div className="grid grid-cols-3 gap-x-20 gap-y-31 mt-[18.5vh] m-[4vh]">
                     {farms.map((farm, index) => (
                     <FarmCard
                         key={index}
+                        farm={farm}
                         name={farm.name}
                         image_url={farm.image_url}
+                        products={products}
+                            
                     />
                     ))}
                 </div>
@@ -42,28 +64,35 @@ export default function ExploreFarms() {
     )
 }
 
-function FarmCard({ name, image_url }) {
+function FarmCard({ farm, name, image_url, products }) {
+    const farmProducts = products.filter(product => product.farms.name === farm.name);
+
+    const firstThreeItems = farmProducts.slice(0, 3);
+
+    const itemsString = firstThreeItems.map(item => item.item_name).join(', ');
+
+    const displayString = farmProducts.length > 3 ? `${itemsString} and more` : itemsString;
+
+
     return (
+        <NavLink to="/farmpage" state={{farm}}>
         <div className="bg-light-gray h-[35vh] w-[35vh] flex flex-col items-center rounded-2xl">
             <div className="bg-dark-gray bg-cover bg-no-repeat bg-center h-[60%] w-[100%] p-0 m-0 rounded-tl-2xl rounded-tr-2xl"
                 style={{ backgroundImage: `url(${image_url})` }}></div>
-            <h1 className="font-bold">{name}</h1>
-            <div className="flex gap-2">
-                <div>
-                    item
+            <h1 className="font-bold" style={{ fontFamily: '"Playfair Display SC", serif' }}>{name}</h1>
+            <div className="flex gap-2 text-center text-sm">
+                {displayString}
                 </div>
-                <div>
-                    item
-                </div>
-                <div>
-                    item
-                </div>
-            </div>
             <div className="flex gap-4">
-                <div>Pickup</div>
-                <div>Delivery</div>
+            {farm.pickup && <div className="text-sm bg-light-yellow text-gray-800 rounded-full p-1 px-3 inline-block mr-1 mt-4">
+                <p >Pickup</p>
+            </div>}
+            {farm.delivery && <div className="text-sm bg-green-300 text-gray-800 rounded-full p-1 px-3 inline-block ml-1 mt-4">
+                <p >Delivery</p>
+            </div>}
             </div>
-        </div>
+            </div>
+            </NavLink>
     )
 }
 

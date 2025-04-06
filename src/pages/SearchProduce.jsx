@@ -27,7 +27,7 @@ export default function SearchProduce() {
 
     return (
         <>
-            <div className="text-dark-green text-5xl m-5 font-bold">Find Produce</div>
+            <div style={{ fontFamily: '"Playfair Display SC", serif' }} className="text-dark-green text-5xl m-5 font-bold">Search Produce</div>
             {/* Div for search and sort elements */}
             <div className="m-5 flex">
                 <SearchBar />
@@ -78,7 +78,7 @@ export default function SearchProduce() {
 
 function ProductCard({ product }) {
     return (
-        <NavLink to={`/search/${product.item_id}`} className="w-[22%] shadow-md m-3 p-3 relative"> 
+        <NavLink to="/product" state={{product}} className="w-[22%] shadow-md m-3 p-3 relative"> 
             {/* Image container */}
             <div className="w-full pb-[100%] relative">
                 <img src={`${product.image_url}`} className="absolute inset-0 w-full h-full object-cover"/>
@@ -89,12 +89,20 @@ function ProductCard({ product }) {
                 <h5 className="text-3xl text-dark-green font-bold">${product.price.toFixed(2)}</h5>
                 <h6 className="text-sm text-gray font-light mb-1 italic">{product.unit}</h6>
             </div>
-            <div className="text-sm bg-light-yellow text-gray-800 rounded-full p-1 px-3 inline-block mr-1"> 
-                <p >Pickup</p>
-            </div>
-            <div className="text-sm bg-light-green text-gray-800 rounded-full p-1 px-3 inline-block ml-1 mb-2"> 
-                <p >Delivery</p>
-            </div>
+            {(product.farms.pickup || product.farms.delivery) && (
+                <div className="flex gap-2">
+                    {product.farms.pickup && (
+                        <div className="text-sm bg-light-yellow text-gray-800 rounded-full p-1 px-3 inline-block">
+                            <p>Pickup</p>
+                        </div>
+                    )}
+                    {product.farms.delivery && (
+                        <div className="text-sm bg-light-green text-gray-800 rounded-full p-1 px-3 inline-block">
+                            <p>Delivery</p>
+                        </div>
+                    )}
+                </div>
+            )}
         </NavLink>
     );
 }

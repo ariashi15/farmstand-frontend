@@ -3,11 +3,15 @@ import { Search } from 'lucide-react';
 export default function SearchBar() {
     return (
         <>
-            <div className="flex italic text-dark-gray bg-light-gray px-5 py-3 w-[500px] rounded-full">
+        <form className="relative text-dark-gray bg-light-gray w-md rounded-full">
+            <div className="relative">
                 {/*icon*/}
-                <Search /> 
-                <div className="px-2">Search for produce...</div>
+                <input type="search" placeholder="Search for produce..." className="px-3 py-3 w-full rounded-full"/>
+                <button className='absolute right-3 top-3 rounded-full bg-gray-100'>
+                    <Search />
+                </button>
             </div>
+            </form>
         </>
     )
 }
