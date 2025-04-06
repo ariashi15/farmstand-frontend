@@ -46,14 +46,14 @@ export default function Header() {
                         : (<button className = "btn bg-yellow-200 rounded-full border-white px-1 py-1 text-dark-yellow hover:cursor-pointer" onClick={() => setProfileDropVisible(!profileDropVisible)}><User/></button>)}
 
                         {profileDropVisible && (
-                        <div className="absolute bg-white shadow-lg rounded-md mt-10 py-2 w-[120px]">
+                        <div className="absolute bg-white shadow-lg rounded-md mt-10 py-2 w-[120px] z-1">
                             <button className="block w-full text-left px-4 py-2 hover:bg-gray-200 text-black hover:cursor-pointer">
                                 My Account
                             </button>
                             <button className="block w-full text-left px-4 py-2 hover:bg-gray-200 text-black hover:cursor-pointer">
                                 Messages
                             </button>
-                            <NavLink className="block w-full text-left px-4 py-2 hover:bg-gray-200 text-black hover:cursor-pointer" to = "/farmdashboard">
+                            <NavLink className="block w-full text-left px-4 py-2 hover:bg-gray-200 text-black hover:cursor-pointer" to = "/farmdashboard/info">
                                 My Farm
                             </NavLink>
                         </div>)}
