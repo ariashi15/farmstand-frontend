@@ -1,9 +1,12 @@
 import { useState } from 'react';
-import { ShoppingCart, MapPin } from 'lucide-react';
+import { ShoppingCart, MapPin, User } from 'lucide-react';
+import { NavLink } from 'react-router-dom';
 
 export default function Header() {
     const [isPopupOpen, setIsPopupOpen] = useState(false); 
     const [location, setLocation] = useState('');
+    const [loggedIn, setLoggedIn] = useState(false);
+    const [profileDropVisible, setProfileDropVisible] = useState(false);
 
     const handleLocationSubmit = (e) => {
         e.preventDefault();
@@ -13,6 +16,7 @@ export default function Header() {
         setIsPopupOpen(false);
         // Handle location submission logic here
     };
+
     return (
         <>
         <header className = "bg-dark-green py-3 items-center text-yellow-50">
@@ -23,17 +27,37 @@ export default function Header() {
                         <span>{location || "Enter Location"}</span>
                     </button>
                 </div>
+
+                <NavLink className = "ml-10" to = "/">Farmstand</NavLink>
+
                 <div className = "flex items-center gap-[2vw]">
                     <ul className= "flex gap-[2vw] pt-1">
                         <li>
-                            <a className = "hover:text-yellow-200" href = "#">Search Produce</a>
+                            <NavLink className = "hover:text-yellow-200" to = "/search">Search Produce</NavLink>
                         </li>
                         <li>
-                            <a className = "hover:text-yellow-200" href = "#">Explore Farms</a>
+                            <NavLink className = "hover:text-yellow-200" to = "/explore">Explore Farms</NavLink>
                         </li>
                     </ul>
                     <div className = "flex gap-[2vw]">
-                        <button className = "btn bg-yellow-200 rounded border-white px-4 py-1 text-dark-yellow">Login</button>
+
+                        {!loggedIn 
+                        ? (<button className = "btn bg-yellow-200 rounded border-white px-4 py-1 text-dark-yellow" onClick={() => setLoggedIn(true)}>Login</button>)
+                        : (<button className = "btn bg-yellow-200 rounded-full border-white px-1 py-1 text-dark-yellow" onClick={() => setProfileDropVisible(!profileDropVisible)}><User/></button>)}
+
+                        {profileDropVisible && (
+                        <div className="absolute bg-white shadow-lg rounded-md mt-10 py-2 w-[120px]">
+                            <button className="block w-full text-left px-4 py-2 hover:bg-gray-200 text-dark-green">
+                                My Account
+                            </button>
+                            <button className="block w-full text-left px-4 py-2 hover:bg-gray-200 text-dark-green">
+                                Messages
+                            </button>
+                            <button className="block w-full text-left px-4 py-2 hover:bg-gray-200 text-dark-green">
+                                My Farm
+                            </button>
+                        </div>)}
+
                         <button className = "btn bg-yellow-200 rounded border-white px-4 py-1 text-dark-yellow"><ShoppingCart size={24} /></button>
                     </div>
                 </div>
