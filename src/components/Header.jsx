@@ -47,18 +47,18 @@ export default function Header() {
 
                         {profileDropVisible && (
                         <div className="absolute bg-white shadow-lg rounded-md mt-10 py-2 w-[120px] z-1">
-                            <button className="block w-full text-left px-4 py-2 hover:bg-gray-200 text-black hover:cursor-pointer">
+                            <NavLink className="block w-full text-left px-4 py-2 hover:bg-gray-200 text-black" to="/account">
                                 My Account
-                            </button>
-                            <button className="block w-full text-left px-4 py-2 hover:bg-gray-200 text-black hover:cursor-pointer">
+                            </NavLink>
+                            <NavLink className="block w-full text-left px-4 py-2 hover:bg-gray-200 text-black" to="/messages">
                                 Messages
-                            </button>
-                            <NavLink className="block w-full text-left px-4 py-2 hover:bg-gray-200 text-black hover:cursor-pointer" to = "/farmdashboard/info">
+                            </NavLink>
+                            <NavLink className="block w-full text-left px-4 py-2 hover:bg-gray-200 text-black" to = "/farmdashboard/info">
                                 My Farm
                             </NavLink>
                         </div>)}
 
-                        <button className = "btn bg-yellow-200 rounded border-white px-4 py-1 text-dark-yellow"><ShoppingCart size={24} /></button>
+                        <NavLink className = "btn bg-yellow-200 rounded border-white px-4 py-1 text-dark-yellow" to="/cart"><ShoppingCart size={24}/></NavLink>
                     </div>
                 </div>
             </nav>
