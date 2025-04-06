@@ -17,6 +17,8 @@ export default function Header() {
         // Handle location submission logic here
     };
 
+    const farmid = "eb37b71a-e2b3-4ea4-ba8b-89d2252e4f64"
+
     return (
         <>
         <header className = "bg-dark-green py-3 items-center text-yellow-50">
@@ -54,7 +56,7 @@ export default function Header() {
                             <NavLink className="block w-full text-left px-4 py-2 hover:bg-gray-200 text-black" to="/messages">
                                 Messages
                             </NavLink>
-                            <NavLink className="block w-full text-left px-4 py-2 hover:bg-gray-200 text-black" to = "/farmdashboard/info">
+                            <NavLink className="block w-full text-left px-4 py-2 hover:bg-gray-200 text-black" to ={`/farm/${farmid}/info`}>
                                 My Farm
                             </NavLink>
                         </div>)}
