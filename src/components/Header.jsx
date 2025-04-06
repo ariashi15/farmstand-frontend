@@ -5,8 +5,8 @@ export default function Header() {
                 <div>
                     <h5>Location</h5>
                 </div>
-                <div class="">
-                    <ul class= "flex items-right gap-[4vw]">
+                <div className="">
+                    <ul className= "flex items-right gap-[4vw]">
                         <li>
                             <a class = "hover:text-gray-500" href = "#">Products</a>
                         </li>
