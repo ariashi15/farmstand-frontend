@@ -31,8 +31,6 @@ export default function Header() {
                     </div>
                 </div>
 
-                <NavLink className = "flex" to = "/">Farmstand</NavLink>
-
                 <div className = "flex items-center gap-[2vw]">
                     <ul className= "flex gap-[2vw] pt-1">
                         <li>
