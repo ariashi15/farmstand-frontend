@@ -1,5 +1,6 @@
 import SearchBar from "../components/SearchBar"
 import React, { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
 
 export default function SearchProduce() {
     const [products, setProducts] = useState([]);
@@ -68,27 +69,32 @@ export default function SearchProduce() {
             {/* Div for all product results */}
             <div className="m-5 mt-5 flex flex-wrap gap-5">
                 {products.map((product, index) => (
-                    <div key={index} className="w-[22%] shadow-md m-3 p-3 relative"> 
-                    {/* Image container */}
-                    <div className="w-full pb-[100%] relative">
-                        <img src={`${product.image_url}`} className="absolute inset-0 w-full h-full object-cover"/>
-                    </div>
-                        <h4 className="text-base font-light mt-3">{product.farms.name}</h4>
-                        <h3 className="text-xl font-medium">{product.item_name}</h3>
-                        <div className="flex flex-wrap items-end my-2 gap-2">
-                            <h5 className="text-3xl text-dark-green font-bold">${product.price.toFixed(2)}</h5>
-                            <h6 className="text-sm text-gray font-light mb-1 italic">{product.unit}</h6>
-                        </div>
-                        <div className="text-sm bg-light-yellow text-gray-800 rounded-full p-1 px-3 inline-block mr-1"> 
-                            <p >Pickup</p>
-                        </div>
-                        <div className="text-sm bg-green-300 text-gray-800 rounded-full p-1 px-3 inline-block ml-1 mb-2"> 
-                            <p >Delivery</p>
-                        </div>
-                        </div>
-                    
-                    ))}
-                </div>
+                    <ProductCard key={index} product={product} />
+                ))}
+            </div>
         </>
+    );
+}
+
+function ProductCard({ product }) {
+    return (
+        <NavLink to={`/search/${product.item_id}`} className="w-[22%] shadow-md m-3 p-3 relative"> 
+            {/* Image container */}
+            <div className="w-full pb-[100%] relative">
+                <img src={`${product.image_url}`} className="absolute inset-0 w-full h-full object-cover"/>
+            </div>
+            <h4 className="text-base font-light mt-3">{product.farms.name}</h4>
+            <h3 className="text-xl font-medium">{product.item_name}</h3>
+            <div className="flex flex-wrap items-end my-2 gap-2">
+                <h5 className="text-3xl text-dark-green font-bold">${product.price.toFixed(2)}</h5>
+                <h6 className="text-sm text-gray font-light mb-1 italic">{product.unit}</h6>
+            </div>
+            <div className="text-sm bg-light-yellow text-gray-800 rounded-full p-1 px-3 inline-block mr-1"> 
+                <p >Pickup</p>
+            </div>
+            <div className="text-sm bg-green-300 text-gray-800 rounded-full p-1 px-3 inline-block ml-1 mb-2"> 
+                <p >Delivery</p>
+            </div>
+        </NavLink>
     );
 }
