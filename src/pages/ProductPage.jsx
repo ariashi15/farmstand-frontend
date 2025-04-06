@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 export default function ProductPage() {
     const [quantity, setQuantity] = useState(0);
@@ -24,7 +24,7 @@ export default function ProductPage() {
     return (
         <>
             <div className="m-10 "> 
-                <Link to="/search" className ="text-gray-500 font-light my-5 hover:underline">Return to search</Link>
+                <NavLink to="/search" className ="text-gray-500 font-light my-5 hover:underline">Return to search</NavLink>
                 {/*image div*/}
                 <div className="flex mt-2"> 
                     <div className="w-[35%] pb-[35%] relative">
