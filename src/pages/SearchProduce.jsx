@@ -66,7 +66,6 @@ export default function SearchProduce() {
                 
             </div>
             {/* Div for all product results */}
-            <Link to="/product">
             <div className="m-5 mt-5 flex flex-wrap gap-5">
                 {products.map((product, index) => (
                     <div key={index} className="w-[22%] shadow-md m-3 p-3 relative"> 
@@ -87,15 +86,9 @@ export default function SearchProduce() {
                             <p >Delivery</p>
                         </div>
                         </div>
-                       
+                    
                     ))}
                 </div>
-                </Link>
-
         </>
     );
-}
-
-function ProduceCard({}) {
-
 }
