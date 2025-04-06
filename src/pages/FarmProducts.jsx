@@ -7,6 +7,24 @@ export default function FarmProducts() {
     const [form, setForm] = useState({image: "", name: "", price: "", inventory: ""});
     const [editingIndex, setEditingIndex] = useState(null);
 
+    const farmid = "eb37b71a-e2b3-4ea4-ba8b-89d2252e4f64";
+
+    useEffect(() => {
+        const fetchInventoryByFarmID = async () => {
+            try {
+                const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/inventory/farm/${farmid}`);
+                const data = await response.json();
+                setProducts(data);
+            } catch (error) {
+                console.error('Error fetching product:', error);
+            } finally {
+                setLoading(false); // set loading to false after fetch
+            }
+        }
+
+        fetchInventoryByFarmID();
+    }, [farmid]);
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setForm((prev) => ({ ...prev, [name]: value }));
@@ -65,7 +83,7 @@ export default function FarmProducts() {
     return (
         <>
            <div className="flex justify-between ">
-                <h1 className="font-bold text-2xl">Your Produces</h1>
+                <h1 className="font-bold text-2xl">Your Produce</h1>
                 <button className="btn bg-dark-green text-yellow-200 rounded-3xl px-3 py-2 flex hover:bg-yellow-200 hover:text-dark-green mr-10" onClick={() => setShowForm(true)}>
                     <PlusIcon size={25} className="mt-0.5" />
                 </button>
@@ -80,11 +98,11 @@ export default function FarmProducts() {
             {products.map((product, index) => (
                 <div key={index} className="grid grid-cols-5 gap-4 items-center border-b pb-2 hover:bg-gray-500/30">
                     <div>
-                        <img src={product.image} className="w-28 h-28 object-cover rounded mt-2 ml-3" />
+                        <img src={product.image_url} className="w-28 h-28 object-cover rounded mt-2 ml-3" />
                     </div>
-                    <div className="ml-18">{product.name}</div>
-                    <div className="ml-35">$ {product.price}</div>
-                    <div className="ml-53">{product.inventory}</div>
+                    <div className="ml-18">{product.item_name}</div>
+                    <div className="ml-35">${product.price.toFixed(2)}</div>
+                    <div className="ml-53">{product.quantity}</div>
                     <div className = "flex justify-end gap-[4vw] mr-3">
                         <button className="btn ml-30 hover:text-yellow-500" onClick={() => handleEdit(index)}><PencilIcon size={24}/></button>
                         <button type="button" className = " mr-3 hover:text-red-600" onClick={() => handleDelete(index)}><Trash2Icon size={24}/></button>

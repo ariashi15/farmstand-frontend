@@ -21,7 +21,7 @@ function App() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/explore" element={<ExploreFarms />} />
-        <Route path="/farmdashboard" element={<FarmDashboard />}>
+        <Route path="/farm/:farmid" element={<FarmDashboard />}>
           <Route index element={<FarmInfo />} />
 
           <Route path="info" element={<FarmInfo />} />
