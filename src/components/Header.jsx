@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ShoppingCart, MapPin, User } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
 
@@ -7,6 +7,7 @@ export default function Header() {
     const [location, setLocation] = useState('');
     const [loggedIn, setLoggedIn] = useState(false);
     const [profileDropVisible, setProfileDropVisible] = useState(false);
+    const [cartItems, setCartItems] = useState(JSON.parse(localStorage.getItem("cart")) || []);
 
     const handleLocationSubmit = (e) => {
         e.preventDefault();
@@ -16,6 +17,16 @@ export default function Header() {
         setIsPopupOpen(false);
         // Handle location submission logic here
     };
+
+       // Sync cart to local storage whenever it changes
+       useEffect(() => {
+        localStorage.setItem("cart", JSON.stringify(cartItems));
+       }, [cartItems]);
+       
+    
+       const cartQuantity = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+       
+
 
     return (
         <>
@@ -59,7 +70,12 @@ export default function Header() {
                             </NavLink>
                         </div>)}
 
-                        <NavLink className = "btn bg-yellow-200 rounded border-white px-4 py-1 text-dark-yellow" to="/cart"><ShoppingCart size={24}/></NavLink>
+                            <NavLink className="relative btn bg-yellow-200 rounded border-white px-4 py-1 text-dark-yellow" to="/cart"><ShoppingCart size={24} /></NavLink>
+                            {cartQuantity > 0 && (
+                                <div className="absolute top-[5px] right-[10px] bg-red-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                                    {cartQuantity}
+                                </div>
+                            )}
                     </div>
                 </div>
             </nav>
