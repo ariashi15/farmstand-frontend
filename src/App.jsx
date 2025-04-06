@@ -4,6 +4,7 @@ import './App.css'
 
 import Header from './components/Header'
 import LandingPage from './pages/LandingPage'
+import ExploreFarms from './pages/ExploreFarms';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -13,6 +14,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<LandingPage />} />
+        <Route path="/explore" element={<ExploreFarms />} />
       </Routes>
     </>
   )
