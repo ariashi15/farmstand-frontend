@@ -1,8 +1,33 @@
-import React, { useState } from "react";
-import { NavLink } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { NavLink, useParams } from 'react-router-dom';
 
 export default function ProductPage() {
+    const { productid } = useParams();
+    console.log(productid);
+    const [product, setProduct] = useState(null);
+    const [loading, setLoading] = useState(true);
     const [quantity, setQuantity] = useState(0);
+    const [selected, setSelected] = useState(null); // null means no button is selected initially
+
+    useEffect(() => {
+        const fetchProductByID = async () => {
+            try {
+                const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/inventory/${productid}`);
+                const data = await response.json();
+                setProduct(data[0]);
+            } catch (error) {
+                console.error('Error fetching product:', error);
+            } finally {
+                setLoading(false); // set loading to false after fetch
+            }
+        }
+
+        fetchProductByID();
+    }, [productid]);
+
+    if (loading) {
+        return <div>Loading...</div>; // Show a loading message while fetching
+    }
 
     const increaseQuantity = () => {
         if (quantity < 10) {
@@ -15,11 +40,11 @@ export default function ProductPage() {
         }
     };
 
-    const [selected, setSelected] = useState(null); // null means no button is selected initially
-
     const toggleButton = (button) => {
         setSelected(button === selected ? null : button); // toggle selection
     };
+
+    console.log(product);
 
     return (
         <>
@@ -28,15 +53,15 @@ export default function ProductPage() {
                 {/*image div*/}
                 <div className="flex mt-2"> 
                     <div className="w-[35%] pb-[35%] relative">
-                        <img src="/assets/apple.webp" className="absolute inset-0 w-full h-full object-cover" />
+                        <img src={`${product.image_url}`} className="absolute inset-0 w-full h-full object-cover" />
                     </div>
                     <div className="ml-25 w-[55%]">
-                        <h4 className="text-xl font-medium mb-1">Crystarialichloe Farm - 10 mi</h4>
-                        <h3 className="text-4xl font-medium">Organic Honeycrisp Apple</h3>
-                        <p className="text-sm mt-2">Our Honeycrisp apples are grown with care on our family farm, where we prioritize sustainable practices and the health of our soil. These crisp, sweet apples are perfect for snacking, baking, or adding a refreshing touch to any dish. Harvested at their peak ripeness, they’re packed with flavor and natural sweetness, ensuring every bite is a delight.</p>
+                        <h4 className="text-xl font-medium mb-1">{product.farms.name}</h4>
+                        <h3 className="text-4xl font-medium">{product.item_name}</h3>
+                        <p className="text-sm mt-2">{product.description}</p>
                         <div className="flex flex-wrap items-end my-4 gap-2">
-                            <h5 className="text-4xl text-dark-green font-bold">$5</h5>
-                            <h6 className="text-base text-gray font-light mb-1 italic">per pound</h6>
+                            <h5 className="text-4xl text-dark-green font-bold">${product.price.toFixed(2)}</h5>
+                            <h6 className="text-base text-gray font-light mb-1 italic">{product.unit}</h6>
                         </div>
                         
                         
