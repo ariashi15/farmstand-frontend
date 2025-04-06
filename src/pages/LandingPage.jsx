@@ -6,10 +6,10 @@ export default function LandingPage() {
     return (
     <>
         {/* welcome banner */}
-        <div className="flex flex-col justify-center items-center m-24">
+        <div className="flex flex-col justify-center items-center m-30">
             {/* background image*/}
-            {/* <div className="absolute inset-0 bg-cover bg-center z-[-1] object-cover"
-                style={{ backgroundImage: "url('src/assets/farmstand.jpg')" }}
+            {/*<div className="absolute inset-0 bg-cover bg-center z-[-1] object-cover"
+                style={{ backgroundImage: "url('src/assets/farmstand-3.jpg')" }}
             ></div> */}
             <h1 className="text-dark-green text-7xl font-semibold">
                 Welcome to Farmstand!
