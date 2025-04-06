@@ -37,7 +37,7 @@ export default function Cart() {
 
     return (
         <>
-            <div className="text-2xl ml-5 mt-3 font-bold">Cart</div>
+            <div style={{ fontFamily: '"Playfair Display SC", serif' }} className="text-2xl ml-5 mt-3 font-bold">Cart</div>
             <hr className="border-b-2 border-dark-green my-4" />
 
             <div className="flex gap-8 h-screen px-2">
@@ -47,8 +47,11 @@ export default function Cart() {
                             <div className="flex items-center gap-4">
                                 <img src={item.image_url} className="h-20 w-20 rounded-2xl border-2 border-light-yellow" alt={item.item_name} />
                                 <div>
-                                    <div className="text-black text-white">{item.item_name}</div>
-                                    <div className="text-medium">{item.farm}</div>
+                                    <div className=" text-white font-bold">{item.item_name}</div>
+                                    <div className = "flex">
+                                        <div className="text-medium">{item.farm}</div>
+                                        <div className="text-light italic"> - {item.delivery_method}</div>
+                                    </div>
                                 </div>
                             </div>
 
@@ -83,7 +86,7 @@ export default function Cart() {
 
                 <div className="w-1/3">
                     <div className="flex flex-col justify-between items-center border py-6 px-8 rounded-2xl bg-dark-green text-light-yellow">
-                        <div className="font-bold text-2xl mb-4">Order Summary</div>
+                        <div style={{ fontFamily: '"Playfair Display SC", serif' }} className="font-bold text-2xl mb-4">Order Summary</div>
                         <div className="bg-light-yellow text-dark-green rounded-2xl py-4 px-5 text-lg font-semibold mb-6 flex-col">
                             <div>Total: ${calcSum()}</div>
                             <div className="text-sm">{cartSum()} items</div>

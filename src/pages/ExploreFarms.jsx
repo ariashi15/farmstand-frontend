@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
+import { ArrowBigRightIcon } from 'lucide-react';
 
 export default function ExploreFarms() {
     const [farms, setFarms] = useState([]);
@@ -39,14 +40,17 @@ export default function ExploreFarms() {
         <>
             <div className="relative flex justify-center items-center">
                 {/* path png */}
+                
                
                 <div
                     className="absolute top-0 w-[80%] h-screen bg-contain bg-top bg-repeat-y z-[-1]"
                     style={{ backgroundImage: "url('src/assets/path.svg')" }}
                 ></div>
-   
-            
-
+                
+                <div className='flex justify-center text-center gap-5'>
+                    <h1 className="text-4xl font-bold mb-[4vh] text-center tracking-widest" style={{ fontFamily: '"Playfair Display SC", serif' }}>Explore Farms! </h1>
+                    <h1 className="text-4xl mt-1"><ArrowBigRightIcon size={40} /></h1>
+                </div>
                 <div className="grid grid-cols-3 gap-x-20 gap-y-31 mt-[18.5vh] m-[4vh]">
                     {farms.map((farm, index) => (
                     <FarmCard
@@ -75,7 +79,10 @@ function FarmCard({ farm, name, image_url, products }) {
 
 
     return (
+        <>
+        
         <NavLink to="/farmpage" state={{farm}}>
+        
         <div className="bg-light-gray h-[35vh] w-[35vh] flex flex-col items-center rounded-2xl">
             <div className="bg-dark-gray bg-cover bg-no-repeat bg-center h-[60%] w-[100%] p-0 m-0 rounded-tl-2xl rounded-tr-2xl"
                 style={{ backgroundImage: `url(${image_url})` }}></div>
@@ -93,6 +100,7 @@ function FarmCard({ farm, name, image_url, products }) {
             </div>
             </div>
             </NavLink>
+        </>
     )
 }
 
