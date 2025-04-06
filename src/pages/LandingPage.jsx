@@ -1,7 +1,26 @@
 import { NavLink } from 'react-router-dom';
-import SearchBar from "../components/SearchBar"
+import SearchBar from "../components/SearchBar";
+import React, { useState, useEffect } from "react";
 
 export default function LandingPage() {
+    const [products, setProducts] = useState([]);
+    const [filtered, setFiltered] = useState([]);
+
+    useEffect(() => {
+        const fetchAllProducts = async () => {
+            try {
+                const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/inventory/allfarms`);
+                const data = await response.json();
+                setProducts(data);
+                setFiltered(data);
+            } catch (error) {
+                console.error('Error fetching products:', error);
+            }
+        }
+
+        fetchAllProducts();
+    }, []);
+    
 
     return (
     <>
@@ -17,7 +36,7 @@ export default function LandingPage() {
             <h2 className="text-dark-green text-lg m-8">
                 Connecting you to local, organic, and sustainable produce.
             </h2>
-            <SearchBar />
+            <SearchBar products={products} setFiltered={setFiltered}/>
             <NavLink className="bg-light-yellow text-dark-yellow font-bold rounded-xl w-[250px] p-5 m-10 text-center" to ="/explore">Explore Farms Near Me</NavLink>
         </div>
         {/* what's in season */}
