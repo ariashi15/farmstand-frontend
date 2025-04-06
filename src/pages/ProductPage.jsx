@@ -10,9 +10,11 @@ export default function ProductPage() {
     
    // const [product, setProduct] = useState(null);
    // const [loading, setLoading] = useState(true);
-    const [quantity, setQuantity] = useState(0);
+    const [quantity, setQuantity] = useState(1);
     const [selected, setSelected] = useState(null); // null means no button is selected initially
     const [addedToCart, setAddedToCart] = useState(false);
+    const [deliveryMethod, setDeliveryMethod] = useState(null);  // 'pickup' or 'delivery'
+
 
     const addToCart = () => {
         const newItem = {
@@ -21,8 +23,7 @@ export default function ProductPage() {
             price: product.price,
             quantity,
             farm: product.farms.name,
-            pickup: product.farms.pickup,
-            delivery: product.farms.delivery,
+            delivery_method: deliveryMethod,
             image_url: product.image_url,
             cart_id: nextCartId
         };
@@ -47,14 +48,14 @@ export default function ProductPage() {
     };
 
 
-// Sync cart and nextCartId to localStorage whenever they change
-useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(cart));
-}, [cart]);
+    // Sync cart and nextCartId to localStorage whenever they change
+    useEffect(() => {
+        localStorage.setItem("cart", JSON.stringify(cart));
+    }, [cart]);
 
-useEffect(() => {
-    localStorage.setItem("nextCartId", nextCartId);
-}, [nextCartId]);
+    useEffect(() => {
+        localStorage.setItem("nextCartId", nextCartId);
+    }, [nextCartId]);
 
 
     // useEffect(() => {
@@ -80,18 +81,18 @@ useEffect(() => {
 
 
     const increaseQuantity = () => {
-        if (quantity < 10) {
+        if (quantity < 5) {
             setQuantity(prevQuantity => prevQuantity + 1);
         }
     }
     const decreaseQuantity = () => {
-        if (quantity > 0) {
+        if (quantity > 1) {
             setQuantity(prevQuantity => prevQuantity - 1);
         }
     };
 
-    const toggleButton = (button) => {
-        setSelected(button === selected ? null : button); // toggle selection
+    const toggleButton = (method) => {
+        setDeliveryMethod(method === deliveryMethod ? null : method);  // toggle
     };
 
     console.log(product);
@@ -117,20 +118,25 @@ useEffect(() => {
                         
                         <div className="mb-1 mt-2">Quantity</div>
                         <div className="flex items-center">
-                            <button onClick={decreaseQuantity} className={`bg-gray-200 text-black font-bold py-2 px-4 rounded ${quantity==0 ? 'text-gray-400' : 'text-black'}`}>-</button>
+                            <button onClick={decreaseQuantity} className={`bg-gray-200 text-black font-bold py-2 px-4 rounded ${quantity==1 ? 'text-gray-400' : 'text-black'}`}>-</button>
                             <span className="mx-4 text-lg">{quantity}</span>
-                            <button onClick={increaseQuantity} className={`bg-gray-200 text-black font-bold py-2 px-4 rounded ${quantity==10 ? 'text-gray-400' : 'text-black'}`}>+</button>
+                            <button onClick={increaseQuantity} className={`bg-gray-200 text-black font-bold py-2 px-4 rounded ${quantity==5 ? 'text-gray-400' : 'text-black'}`}>+</button>
                         </div>
                         <div className="mt-6 mb-2"> 
                             Delivery Method
                         </div>
                         <div>
-                            <button className={`text-lg border-dark-green border-2 text-gray-800 rounded-full p-1 px-4 inline-block mr-3 ${selected === 'sort' ? 'bg-dark-green text-white' : ''}`} onClick = {() => toggleButton('sort')}> 
-                                Pickup
-                            </button>
-                            <button className={`text-lg border-dark-green border-2 text-gray-800 rounded-full p-1 px-4 inline-block mr-3 ${selected === 'filter' ? 'bg-dark-green text-white' : ''}`} onClick= {() => toggleButton('filter')}>
-                                Delivery
-                            </button>
+                        <button 
+                        className={`text-lg border-dark-green border-2 text-gray-800 rounded-full p-1 px-4 inline-block mr-3 ${deliveryMethod === 'Pickup' ? 'bg-dark-green text-white' : ''}`}
+                        onClick={() => toggleButton('Pickup')}>
+                        Pickup
+                        </button>
+
+                        <button 
+                        className={`text-lg border-dark-green border-2 text-gray-800 rounded-full p-1 px-4 inline-block mr-3 ${deliveryMethod === 'Delivery' ? 'bg-dark-green text-white' : ''}`}
+                        onClick={() => toggleButton('Delivery')}>
+                        Delivery
+                        </button>
 
                         </div>
 
