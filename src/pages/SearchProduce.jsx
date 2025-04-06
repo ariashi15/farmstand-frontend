@@ -71,12 +71,12 @@ export default function SearchProduce() {
                     <div key={index} className="w-[22%] shadow-md m-3 p-3 relative"> 
                     {/* Image container */}
                     <div className="w-full pb-[100%] relative">
-                        <img src="/assets/apple.webp" className="absolute inset-0 w-full h-full object-cover"/>
+                        <img src={`${product.image_url}`} className="absolute inset-0 w-full h-full object-cover"/>
                     </div>
-                        <h4 className="text-base font-light mt-3">Farm</h4>
+                        <h4 className="text-base font-light mt-3">{product.farms.name}</h4>
                         <h3 className="text-xl font-medium">{product.item_name}</h3>
                         <div className="flex flex-wrap items-end my-2 gap-2">
-                            <h5 className="text-3xl text-dark-green font-bold">{product.price}</h5>
+                            <h5 className="text-3xl text-dark-green font-bold">${product.price.toFixed(2)}</h5>
                             <h6 className="text-sm text-gray font-light mb-1 italic">{product.unit}</h6>
                         </div>
                         <div className="text-sm bg-light-yellow text-gray-800 rounded-full p-1 px-3 inline-block mr-1"> 
