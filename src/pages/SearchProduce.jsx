@@ -92,7 +92,7 @@ function ProductCard({ product }) {
             <div className="text-sm bg-light-yellow text-gray-800 rounded-full p-1 px-3 inline-block mr-1"> 
                 <p >Pickup</p>
             </div>
-            <div className="text-sm bg-green-300 text-gray-800 rounded-full p-1 px-3 inline-block ml-1 mb-2"> 
+            <div className="text-sm bg-light-green text-gray-800 rounded-full p-1 px-3 inline-block ml-1 mb-2"> 
                 <p >Delivery</p>
             </div>
         </NavLink>
