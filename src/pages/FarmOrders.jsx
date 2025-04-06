@@ -1,7 +1,7 @@
 export default function FarmOrders() {
     return (
         <>
-            <div class="flex">
+            <div className="flex">
                 oRds
             </div>
         </>
