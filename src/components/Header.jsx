@@ -32,8 +32,8 @@ export default function Header() {
         <>
         <header className = "bg-dark-green py-3 items-center text-yellow-50">
             <nav className = "flex justify-between items-center bg-dark-green mx-auto w-[97%]">
-                <div className="flex gap-8 items-center">
-                    <NavLink to = "/">Farmstand</NavLink>
+                <div className="flex gap-8 items-center" >
+                    <NavLink to = "/" style={{ fontFamily: '"Playfair Display SC", serif' }}>Farmstand</NavLink>
                     <div>
                         <button className="btn flex bg-yellow-200 rounded border-white px-4 py-1 text-dark-yellow" onClick={() => setIsPopupOpen(true)}>
                             <MapPin size={24} className= "mr-2 -ml-2"/>
