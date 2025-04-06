@@ -9,6 +9,7 @@ import FarmInfo from './pages/FarmInfo'
 import FarmProducts from './pages/FarmProducts'
 import FarmOrders from './pages/FarmOrders'
 import SearchProduce from './pages/SearchProduce';
+import ProductPage from './pages/ProductPage';
 import Cart from './pages/Cart';
 import Account from './pages/Account';
 import Messages from './pages/Messages';
@@ -28,6 +29,7 @@ function App() {
           <Route path="orders" element={<FarmOrders />} />
         </Route>
         <Route path="/search" element={<SearchProduce />} />
+        <Route path="/product" element={<ProductPage />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/account" element={<Account />} />
         <Route path="/messages" element={<Messages />} />

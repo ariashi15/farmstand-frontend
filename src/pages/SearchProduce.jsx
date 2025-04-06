@@ -1,4 +1,5 @@
 import SearchBar from "../components/SearchBar"
+import { Link } from 'react-router-dom';
 import React, { useState } from "react";
 
 export default function SearchProduce() {
@@ -18,10 +19,10 @@ export default function SearchProduce() {
                 <SearchBar />
                 {/* Sort Dropdown */}
                 <div className="relative">
-                    <button className="bg-dark-green text-white font-medium py-2 px-4 rounded m-1 ml-3 hover:cursor-pointer" onClick={toggleSort}>Sort By</button>
+                    <button className={`bg-dark-green text-white font-medium py-2 px-4 hover:cursor-pointer rounded m-1 ml-3 ${sortVisible ? 'bg-green-700' : ''}`} onClick={toggleSort}>Sort By</button>
                     {sortVisible && (
-                        <div className="absolute bg-white shadow-lg rounded-md mt-2 py-2 w-[2 00px] z-10">
-                        <button className="block w-full text-left px-4 py-2 hover:bg-gray-200 hover:cursor-pointer">
+                        <div className="absolute shadow-lg bg-white rounded-md mt-2 py-2 w-[200px] z-10">
+                        <button className="block w-full text-left px-4 py-2 hover:bg-gray-200">
                         Price (Low to High)
                       </button>
                       <button className="block w-full text-left px-4 py-2 hover:bg-gray-200 hover:cursor-pointer">
@@ -36,10 +37,10 @@ export default function SearchProduce() {
 
                 {/* Filter Dropdown */}
                 <div className="relative">
-                <button className="bg-dark-green text-white font-medium py-2 px-4 rounded m-1 hover:cursor-pointer" onClick ={toggleFilter}>Filter By</button>
+                    <button className={`bg-dark-green text-white hover:cursor-pointer font-medium py-2 px-4 rounded m-1 ${filterVisible ? 'bg-green-700' : ''}`} onClick ={toggleFilter}>Filter By</button>
                     {filterVisible && (
-                        <div className="absolute bg-white shadow-lg rounded-md mt-2 py-2 w-[200px] z-10">
-                        <button className="block w-full text-left px-4 py-2 hover:bg-gray-200 hover:cursor-pointer">
+                        <div className="absolute shadow-lg bg-white rounded-md mt-2 py-2 w-[200px] z-10">
+                        <button className="block w-full text-left px-4 py-2 hover:bg-gray-200">
                         Offers Delivery
                       </button>
                       <button className="block w-full text-left px-4 py-2 hover:bg-gray-200 hover:cursor-pointer">
@@ -52,6 +53,7 @@ export default function SearchProduce() {
                 
             </div>
             {/* Div for all product results */}
+            <Link to="/product">
             <div className="m-5 mt-5 flex flex-wrap gap-5">
                 {products.map((_, index) => (
                     <div key={index} className="w-[22%] shadow-md m-3 p-3 relative"> 
@@ -66,14 +68,16 @@ export default function SearchProduce() {
                             <h6 className="text-sm text-gray font-light mb-1 italic">per pound</h6>
                         </div>
                         <div className="text-sm bg-light-yellow text-gray-800 rounded-full p-1 px-3 inline-block mr-1"> 
-                            <h7 >Pickup</h7>
+                            <p >Pickup</p>
                         </div>
-                        <div className="text-sm bg-light-yellow text-gray-800 rounded-full p-1 px-3 inline-block ml-1 mb-2"> 
-                            <h7 >Delivery</h7>
+                        <div className="text-sm bg-green-300 text-gray-800 rounded-full p-1 px-3 inline-block ml-1 mb-2"> 
+                            <p >Delivery</p>
                         </div>
-                    </div>
+                        </div>
+                       
                     ))}
-            </div>
+                </div>
+                </Link>
 
         </>
     );
