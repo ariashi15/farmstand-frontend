@@ -1,6 +1,9 @@
+import { useNavigate } from 'react-router-dom';
 import SearchBar from "../components/SearchBar"
 
 export default function LandingPage() {
+    const navigate = useNavigate();
+
     return (
     <>
         {/* welcome banner */}
